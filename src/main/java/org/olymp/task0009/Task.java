@@ -1,21 +1,18 @@
-import java.util.*;
-import java.io.*;
-import java.math.*;
-import static java.lang.Math.*;
+package org.olymp.task0009;
 
-public class Main{ //имя класса должно быть Main
-    PrintWriter pw;
-    Scanner sc;
-    public static void main(String[] argv) throws IOException{
-        new Main().run();
-    }
-    public void run() throws IOException{
-        sc = new Scanner(new File("input.txt"));
-        pw = new PrintWriter(new File("output.txt"));
-        pw.print(solve(sc));
-        pw.close();
-    }
-   public String solve(Scanner sc) {
+
+import org.olymp.Solvable;
+import org.olymp.utils.Utils;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import static java.lang.Math.*;
+import java.util.Scanner;
+
+public class Task implements Solvable {
+    private final static Logger LOGGER = LoggerFactory.getLogger(Utils.getClassName());
+
+    @Override
+    public String solve(Scanner sc) {
         var len = sc.nextInt();
         var sum = 0;
         var multiply = 1;
@@ -40,9 +37,9 @@ public class Main{ //имя класса должно быть Main
             }
         }
         for (int i = min(minI, maxI)+1; i < max(minI, maxI); i++) {
+//            LOGGER.trace("{}: {}*{} = {}", i, multiply, arr[i], multiply * arr[i]);
             multiply *= arr[i];
         }
         return String.format("%d %d", sum, multiply);
     }
-
 }
