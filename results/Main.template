@@ -1,5 +1,6 @@
 import java.util.*;
 import java.io.*;
+import java.math.*;
 
 public class Main{ //имя класса должно быть Main
     PrintWriter pw;
@@ -9,17 +10,19 @@ public class Main{ //имя класса должно быть Main
     }
     public void run() throws IOException{
         sc = new Scanner(new File("input.txt"));
-        int n = sc.nextInt();
         pw = new PrintWriter(new File("output.txt"));
-        pw.print(sum(n));
+        pw.print(solve(sc));
         pw.close();
     }
-    public long sum(int n) {
-        long result = 0;
-        for(int i = 1; i <= n; i++) {
-            result += i;
+    public String solve(Scanner sc) {
+        var result = new BigInteger(Integer.MIN_VALUE+"");
+        while (sc.hasNext()) {
+            var val = new BigInteger(sc.next());
+            if (val.compareTo(result) > 0) {
+                result = val;
+            }
         }
-        return result;
+        return result.toString();
     }
 
 }

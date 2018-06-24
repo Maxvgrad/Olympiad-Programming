@@ -2,31 +2,33 @@ package org.olymp;
 
 import java.util.*;
 import java.io.*;
-import org.olymp.task0007.Task;
 import org.olymp.utils.Utils;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 public class Main{ //имя класса должно быть Main
-    private final File inputFile;
-    private final File outputFile;
-    private final Task task;
+    private final static Logger LOGGER = LoggerFactory.getLogger(Utils.getClassName());
+    private Context context;
     PrintWriter pw;
     Scanner sc;
 
-    public Main() {
-        task = new Task();
-        inputFile = Utils.getInputFile(Task.class);
-        outputFile = Utils.getOutputFile(Task.class);
+    public Main(String task) {
+        this.context = Utils.createContext(task, Context.class);
     }
 
-    public static void main(String[] argv) throws IOException{
-        new Main().run();
+    public static void main(String[] args) throws IOException{
+        if (args.length != 1) {
+            LOGGER.warn("usage: java -jar Olympiad-Programming.jar task0001");
+            return;
+        }
+        LOGGER.info(args[0]);
+        new Main(args[0]).run();
     }
     public void run() throws IOException{
-        sc = new Scanner(inputFile);
-        pw = new PrintWriter(outputFile);
-        pw.print(task.solve(sc));
+        sc = new Scanner(context.getInputFile());
+        pw = new PrintWriter(context.getOutputFile());
+        pw.print(context.getTask().solve(sc));
         pw.print(1);
-        pw.flush();
         pw.close();
     }
 }
