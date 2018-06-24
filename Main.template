@@ -15,14 +15,10 @@ public class Main{ //имя класса должно быть Main
         pw.close();
     }
     public String solve(Scanner sc) {
-        var result = new BigInteger(Integer.MIN_VALUE+"");
-        while (sc.hasNext()) {
-            var val = new BigInteger(sc.next());
-            if (val.compareTo(result) > 0) {
-                result = val;
-            }
-        }
-        return result.toString();
+        var a = sc.nextInt();
+        var b = sc.nextInt();
+        var c = sc.nextInt();
+        return a * b == c ? "YES" : "NO";
     }
 
 }

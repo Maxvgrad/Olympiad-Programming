@@ -39,6 +39,7 @@ public class Utils {
         var iDir = composeDirName(c.getResultsDir(), c.getTask(), c.getInputName());
         var oDir = composeDirName(c.getResultsDir(), c.getTask(), c.getOutputName());
         var classFullName = composePackageName(Solvable.class.getPackageName(), c.getTask(), TASK_NAME);
+        LOGGER.trace("Input file dir: {}\nOutput file dir: {}\nTask class full Name: {}", iDir, oDir, classFullName);
         result.setInputFile(new File(iDir));
         result.setOutputFile(new File(oDir));
         try {

@@ -21,14 +21,13 @@ public class Main{ //имя класса должно быть Main
             LOGGER.warn("usage: java -jar Olympiad-Programming.jar task0001");
             return;
         }
-        LOGGER.info(args[0]);
+        LOGGER.info("Start task: {}", args[0]);
         new Main(args[0]).run();
     }
     public void run() throws IOException{
         sc = new Scanner(context.getInputFile());
         pw = new PrintWriter(context.getOutputFile());
         pw.print(context.getTask().solve(sc));
-        pw.print(1);
         pw.close();
     }
 }
