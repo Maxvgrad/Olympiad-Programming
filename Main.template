@@ -15,20 +15,25 @@ public class Main{ //имя класса должно быть Main
         pw.print(solve(sc));
         pw.close();
     }
-   @Override
-       public String solve(Scanner sc) {
-           var result = new StringBuilder();
-           var a = sc.nextInt();
-           var b = sc.nextInt();
-           var c = sc.nextInt();
-           var d = sc.nextInt();
 
-           for (int i = -100; i < 101; i++) {
-               if ((a * pow(i, 3) + b * pow(i, 2) + c * i + d ) == 0) {
-                   result.append(i).append(" ");
-               }
-           }
-           return result.toString().trim();
-       }
-
+    public String solve(Scanner sc) {
+        int step = sc.nextInt();
+        String n = "";
+        while (sc.hasNext()) {
+            n += sc.next();
+        }
+        var t = System.nanoTime();
+        BigInteger[] arr = new BigInteger[Integer.valueOf(n)+1];
+        arr[0] = new BigInteger("1");
+        for (int i = 1; i <= Integer.valueOf(n); i++) {
+            BigInteger sum = new BigInteger("0");
+            for (int j = 1; j <= step; j++) {
+                if (i - j >= 0) {
+                    sum = sum.add(arr[i - j]);
+                }
+                arr[i] = sum;
+            }
+        }
+        return arr[i].toString();
+    }
 }
