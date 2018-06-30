@@ -1,20 +1,18 @@
-import java.util.*;
-import java.io.*;
-import java.math.*;
-import static java.lang.Math.*;
+package org.olymp.task0013;
 
-public class Main{ //имя класса должно быть Main
-    PrintWriter pw;
-    Scanner sc;
-    public static void main(String[] argv) throws IOException{
-        new Main().run();
-    }
-    public void run() throws IOException{
-        sc = new Scanner(new File("input.txt"));
-        pw = new PrintWriter(new File("output.txt"));
-        pw.print(solve(sc));
-        pw.close();
-    }
+
+import org.olymp.Solvable;
+import org.olymp.utils.Utils;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
+import java.math.BigInteger;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Scanner;
+
+public class Task implements Solvable {
+    private final static Logger LOGGER = LoggerFactory.getLogger(Utils.getClassName());
 
     public String solve(Scanner sc) {
         var a = sc.nextInt();
@@ -39,6 +37,7 @@ public class Main{ //имя класса должно быть Main
             if (aL.contains(i))
                 cow++;
         }
+        LOGGER.info("{} {}", bull, cow);
         return String.format("%d %d", bull, cow);
     }
 }
