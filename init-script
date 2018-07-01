@@ -1,0 +1,69 @@
+#!/bin/bash
+
+PROGNAME=${0##*/}
+
+usage() {
+	echo "usage: $PROGNAME -t taskNumber"
+}
+invalid_input() {
+	echo "$PROGNAME: Invalid input. Please correct '$1'" | tee -a "${LOG}"
+	exit 1
+}
+is_not_a_dir() {
+	echo "${PROGNAME}: '${1}' is not a directory." | tee -a "${LOG}"
+	exit 1
+}
+is_not_exists() {
+	echo "${PROGNAME}: '${1}' is not a directory."
+	exit 1
+}
+#Variables
+task=
+cur_dir=$(pwd)
+results_dir="${cur_dir}/results/"
+input_file="/input.txt"
+output_file="/output.txt"
+code_dir="${cur_dir}/src/main/java/org/olymp/"
+task_java="/Task.java"
+task_dir=
+
+#Process script arguments
+if [[ $# == 0 ]]; then
+	usage
+	exit 1
+fi
+while [[ -n "$1" ]]; do
+	case "$1" in
+		-t | --task)	shift
+						task="$1"
+						;;
+		-h | --help)	usage
+						exit
+						;;
+		*)				usage
+						exit 1
+						;;
+	esac
+	shift
+done
+
+#Validation
+[[ ! -d ${results_dir} ]] && is_not_a_dir ${results_dir}
+[[ ! -d ${code_dir} ]] && is_not_a_dir ${code_dir}
+
+echo "Make directory '${results_dir}${task}'"
+mkdir "${results_dir}${task}"
+echo "Create file '${results_dir}${task}${input_file}'"
+touch "${results_dir}${task}${input_file}"
+echo "Create file '${results_dir}${task}${output_file}'"
+touch "${results_dir}${task}${output_file}"
+
+mkdir "${code_dir}${task}"
+cd ${code_dir}
+for dir in ${code_dir}/*/; do
+    task_dir=${dir%*/}
+	[[ -f "${task_dir}${task_java}" ]] && break
+	#echo ${dir##*/}
+done
+echo "Copy $task_dir$task_java into $code_dir$task"
+cp "${task_dir}${task_java}" "${code_dir}${task}"
