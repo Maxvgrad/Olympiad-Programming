@@ -100,7 +100,8 @@ public class Utils {
         return result;
     }
     /**
-     * Get file from resources
+     * @return File from resources directory.
+     * @throws NullPointerException if fileName is not found.
      */
     private static File getFile(String fileName) throws NullPointerException {
         Objects.requireNonNull(fileName = Utils.class.getClassLoader().getResource(fileName).getFile());
@@ -125,7 +126,23 @@ public class Utils {
         return p.matcher(context);
     }
 
+    // move to good Utils class
+    /**
+     * Check array length
+     * @return arr if arr.length == len
+     * @throws IllegalArgumentException if arr.length != len
+     */
+    public static <T> T[] checkArrayLength(int len, T... arr) throws IllegalArgumentException {
+        if (arr.length != len)
+            throw new IllegalArgumentException(
+                    String.format("Not correct length '%d'. Length support to be '%d'", arr.length, len));
+        return arr;
+    }
 
+    /**
+     * Return class name, witch invokes this method, used for LOGGER initialization.
+     * Don't use it inside this class.
+     */
     public static String getClassName() {
         return Thread.currentThread().getStackTrace()[2].getClassName();
     }

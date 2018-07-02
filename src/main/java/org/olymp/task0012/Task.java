@@ -8,6 +8,7 @@ import org.slf4j.LoggerFactory;
 
 import java.math.BigInteger;
 import java.util.Arrays;
+import java.util.List;
 import java.util.Objects;
 import java.util.Scanner;
 import java.util.stream.Collectors;
@@ -59,6 +60,8 @@ public class Task implements Solvable {
         Point b = new Point(coords[iter++], coords[iter++]);
         Point c = new Point(coords[iter++], coords[iter++]);
         Point d = new Point(coords[iter++], coords[iter++]);
+//        List<Point>[] pointsPermulations =
+//        for
         return null;
     }
 

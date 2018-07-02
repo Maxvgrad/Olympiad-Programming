@@ -17,28 +17,16 @@ public class Main{ //имя класса должно быть Main
     }
 
     public String solve(Scanner sc) {
-        var a = sc.nextInt();
-        var b = sc.nextInt();
-        List<Integer> aL = new ArrayList<>();
-        List<Integer> bL = new ArrayList<>();
-
-        var bull = 0;
-        var cow = 0;
-        while (b != 0 && a != 0) {
-            if (b % 10 == a % 10) {
-                bull++;
-            } else {
-                aL.add(a % 10);
-                bL.add(b % 10);
+        var count = 0;
+        var n = sc.nextInt();
+        sc.nextLine();
+        for (var i = 0; i < n; i++) {
+            var arr = sc.nextLine().split(" ");
+            for (var j = i; j < n; j++) {
+                if (Integer.parseInt(arr[j]) == 1)
+                    count++;
             }
-            a /= 10;
-            b /= 10;
         }
-
-        for(Integer i : bL) {
-            if (aL.contains(i))
-                cow++;
-        }
-        return String.format("%d %d", bull, cow);
+        return count + "";
     }
 }
