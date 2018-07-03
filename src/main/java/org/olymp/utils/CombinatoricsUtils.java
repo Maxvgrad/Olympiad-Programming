@@ -48,4 +48,28 @@ public class CombinatoricsUtils {
 
 //    private
 
+
+    /**
+     * Greatest Common Divisor
+     */
+    public static int gcd(int a, int b) {
+        return euclidGcd(a, b);
+    }
+
+    /**
+     * Euclidean Algorithm
+     * */
+    private static int euclidGcd(int a, int b) {
+        if (b == 0 || a == 0)
+            return max(a, b);
+        return euclidGcd(min(a, b), max(a, b) % min(a, b));
+    }
+
+    /**
+     * Least Common Multiple
+     */
+    public static int lcm(int a, int b) {
+        return a * b / euclidGcd(a, b);
+    }
+
 }
