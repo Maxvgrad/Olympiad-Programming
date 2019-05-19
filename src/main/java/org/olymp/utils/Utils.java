@@ -30,7 +30,7 @@ public class Utils {
     public static Context createContext(String taskPackage, Class<Context> clazz) {
         var conf = load(ConfigYaml.class);
         if  (conf.getTask() == null)
-            conf.setTask(validatePackage(taskPackage));
+            conf.setTask(taskPackage);
         return createContext(conf);
     }
 

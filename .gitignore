@@ -10,3 +10,4 @@ gradlew.bat
 *.jar
 *.txt
 !logback.xml
+**/config.yaml
